@@ -1,0 +1,134 @@
+import { useState } from "react";
+import { useI18n } from "@/lib/i18n";
+import drRossiPhoto from "@/assets/DR.RossiHD.png";
+
+export function AboutSection() {
+  const { t } = useI18n();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const credentials = [
+    {
+      es: "Doctorado en Medicina Quirúrgica — UBA | Especializado en Cirugía Facial. El máximo nivel académico en la carrera médica argentina.",
+      en: "Doctorado in Surgical Medicine — UBA | Specialized in Facial Surgery. The highest academic level in Argentine medicine.",
+      detailEs:
+        "El Doctorado en Medicina es el máximo escalón académico de la carrera médica universitaria en Argentina. No existe título de posgrado superior. Dr. Javier Rossi lo obtuvo con especialización en Cirugía Facial en la Universidad de Buenos Aires.",
+      detailEn:
+        "A Doctorado in Medicine is the highest academic level in Argentine university medical training. No higher postgraduate degree exists. Dr. Rossi earned it with a specialization in Facial Surgery at the University of Buenos Aires.",
+    },
+    {
+      es: "Triple especialización quirúrgica | Cirugía General · Cirugía de Cabeza, Cuello y Maxilofacial · Cirugía Plástica, Reparadora y Estética.",
+      en: "Triple surgical specialization | General Surgery · Head, Neck & Maxillofacial Surgery · Plastic, Reconstructive & Aesthetic Surgery.",
+      detailEs:
+        "Pocos cirujanos en Argentina combinan estas tres especializaciones. Esta formación le permite a Dr. Javier Rossi abordar el rostro desde una perspectiva integral: estructura ósea, tejidos blandos y estética, con dominio técnico en cada nivel.",
+      detailEn:
+        "Few surgeons in Argentina combine these three specializations. This training allows Dr. Rossi to approach the face from an integral perspective: bone structure, soft tissue and aesthetics, with technical mastery at every level.",
+    },
+    {
+      es: "Director de Carrera y Residencia de Cirugía — UBA | Profesor universitario en UBA, Universidad del Salvador, Barceló y UCES.",
+      en: "Director of Surgery Career & Residency — UBA | University professor at UBA, Universidad del Salvador, Barceló and UCES.",
+      detailEs:
+        "Dr. Javier Rossi no solo opera — forma a los cirujanos del futuro. Su rol como director y profesor universitario en UBA, Universidad del Salvador, Barceló y UCES refleja el reconocimiento de la comunidad académica a su trayectoria.",
+      detailEn:
+        "Dr. Rossi doesn't only operate — he trains the surgeons of the future. His role as director and university professor at UBA, Universidad del Salvador, Barceló and UCES reflects the academic community's recognition of his career.",
+    },
+    {
+      es: "Hospital Militar Central | Miembro del American College of Surgeons, American Society of Plastic Surgery, Asociación Argentina de Cirugía y de la Asociación Argentina de Cirugía Estética Facial.",
+      en: "Hospital Militar Central | Miembro del American College of Surgeons, American Society of Plastic Surgery, Asociación Argentina de Cirugía y de la Asociación Argentina de Cirugía Estética Facial.",
+      detailEs:
+        "Centro de referencia nacional para cirugías de alta complejidad con mayor exigencia técnica y quirúrgica del país. Dr. Javier Rossi es desde hace 15 años, jefe de la División de Cirugía y segundo jefe de Departamento Quirúrgico.",
+      detailEn:
+        "Centro de referencia nacional para cirugías de alta complejidad con mayor exigencia técnica y quirúrgica del país. Dr. Javier Rossi es desde hace 15 años, jefe de la División de Cirugía y segundo jefe de Departamento Quirúrgico.",
+    },
+    {
+      es: "Director Médico y Fundador de Crear, Centro de Cirugía Plástica, Medicina Estética y Odontología.",
+      en: "Medical Director and Founder of Crear, Center for Plastic Surgery, Aesthetic Medicine and Dentistry.",
+      detailEs:
+        "Crear es el centro médico fundado y dirigido por el Dr. Rossi, donde confluyen la cirugía plástica, la medicina estética y la odontología bajo un mismo estándar de excelencia. Un espacio diseñado para acompañar a cada paciente de forma integral.",
+      detailEn:
+        "Crear is the medical center founded and led by Dr. Rossi, where plastic surgery, aesthetic medicine and dentistry converge under the same standard of excellence. A space designed to support each patient in an integral way.",
+    },
+    {
+      es: "Director Médico de T-Change, Centro Especializado en Cirugía Transgénero Internacional.",
+      en: "Medical Director of T-Change, International Center Specialized in Transgender Surgery.",
+      detailEs:
+        "T-Change es el centro internacional especializado en cirugía transgénero dirigido por el Dr. Rossi. Referente en Facial Feminization Surgery para pacientes de todo el mundo que buscan un resultado seguro, preciso y alineado con su identidad.",
+      detailEn:
+        "T-Change is the international center specialized in transgender surgery led by Dr. Rossi. A reference in Facial Feminization Surgery for patients worldwide seeking a safe, precise result aligned with their identity.",
+    },
+  ];
+
+  return (
+    <section id="about" className="py-16 md:py-24 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          {/* Photo */}
+          <img
+            src={drRossiPhoto}
+            alt="Dr. Javier Rossi"
+            className="w-full rounded-lg object-cover"
+            style={{ aspectRatio: "3/4" }}
+          />
+
+          {/* Content */}
+          <div>
+            <span className="text-sm font-medium text-primary tracking-wide">
+              {t("Perfil profesional", "Professional profile")}
+            </span>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-foreground leading-snug">
+              {t(
+                "Una formación sin igual en cirugía facial",
+                "Unmatched credentials in facial surgery"
+              )}
+            </h2>
+
+            {/* Pull quote */}
+            <blockquote className="mt-6 border-l-2 border-primary pl-5 text-muted-foreground italic text-base leading-relaxed">
+              {t(
+                "Cada intervención quirúrgica es el resultado de décadas de formación y miles de horas en quirófano.",
+                "Every surgical intervention is the result of decades of training and thousands of hours in the operating room."
+              )}
+            </blockquote>
+
+            {/* Credential cards */}
+            <div className="mt-8 space-y-4">
+              {credentials.map((cred, i) => {
+                const isOpen = openIndex === i;
+                return (
+                  <div
+                    key={i}
+                    className={`group border border-border rounded-lg bg-background overflow-hidden transition-shadow duration-300 cursor-pointer hover:[box-shadow:0_4px_20px_rgba(156,141,183,0.45)] ${
+                      isOpen ? "[box-shadow:0_4px_20px_rgba(156,141,183,0.45)]" : ""
+                    }`}
+                    onMouseEnter={() => setOpenIndex(i)}
+                    onMouseLeave={() => setOpenIndex((cur) => (cur === i ? null : cur))}
+                    onClick={() => setOpenIndex((cur) => (cur === i ? null : i))}
+                  >
+                    <div className="p-4">
+                      <p className="text-sm text-foreground leading-relaxed">
+                        {t(cred.es, cred.en)}
+                      </p>
+                    </div>
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div
+                          className="px-4 pt-3 pb-4 text-sm leading-relaxed text-white"
+                          style={{ backgroundColor: "#9C8DB7" }}
+                        >
+                          {t(cred.detailEs, cred.detailEn)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
